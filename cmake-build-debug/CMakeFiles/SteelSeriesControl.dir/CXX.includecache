@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hugh/CLionProjects/SteelSeriesControl/main.cpp
+iostream
+-
+libusb-1.0/libusb.h
+-
+map
+-
+vector
+-
+dirent.h
+-
+fstream
+-
+iterator
+-
+zconf.h
+-
+algorithm
+-
+thread
+-
+png.h
+-
+
