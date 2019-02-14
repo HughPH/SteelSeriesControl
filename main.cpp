@@ -5,7 +5,6 @@
 #include <dirent.h>
 #include <fstream>
 #include <iterator>
-#include <zconf.h>
 #include <algorithm>
 #include <thread>
 #include <cstring>
@@ -38,6 +37,8 @@ struct Colour {
         this->G = G;
         this->B = B;
     }
+
+    Colour() = default;
 };
 
 Colour ParseColour(char *arg);
@@ -231,8 +232,8 @@ void ConfigureLED(char **args) {
     // need to see if we can query current colour
     // need to store local data
 
-    Byte timeLowByte = static_cast<Byte>(Time & 0xff);
-    Byte timeHighByte = static_cast<Byte>((Time >> 8) & 0xff);
+    auto timeLowByte = static_cast<Byte>(Time & 0xff);
+    auto timeHighByte = static_cast<Byte>((Time >> 8) & 0xff);
     vector<Byte> data = {05, 00, LED, Colour1.R, Colour1.G, Colour1.B, Colour2.R, Colour2.G, Colour2.B, timeLowByte, timeHighByte};
 
     uint16_t wValue = 0x0200;
@@ -295,7 +296,7 @@ libusb_device_handle* SetupDevice(libusb_context *ctx) {
         cout << "Init error " << r << endl;
         return deviceHandle;
     }
-    libusb_set_debug(ctx, 3);
+    libusb_set_option(ctx, libusb_option::LIBUSB_OPTION_LOG_LEVEL, 3);
 
     int detachResult;
     int claimResult;
