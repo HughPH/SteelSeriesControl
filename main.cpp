@@ -241,27 +241,27 @@ void ConfigureLED(char **args) {
 
 Colour ParseColour(char *arg) {
     Colour result = colours[arg];
-    if (result.R==0 && result.G==0 && result.B==0){
+    if (result.R == 0 && result.G == 0 && result.B == 0){
         int adj = 0;
         if (arg[0] == '#')
             adj = 1;
-        if (strlen(arg)==6){
+        if (strlen(arg) - adj == 6){
             char buf[2];
-            memcpy(buf,arg,0+adj);
+            memcpy(buf, arg, 0 + adj);
             result.R = static_cast<Byte>(std::strtol(buf, nullptr, 16));
-            memcpy(buf,arg,2+adj);
+            memcpy(buf, arg, 2 + adj);
             result.G = static_cast<Byte>(std::strtol(buf, nullptr, 16));
-            memcpy(buf,arg,4+adj);
+            memcpy(buf, arg, 4 + adj);
             result.B = static_cast<Byte>(std::strtol(buf, nullptr, 16));
 
-        } else if(strlen(arg)==3){
+        } else if(strlen(arg) - adj == 3){
             char buf[1];
-            memcpy(buf,arg,0+adj);
-            result.R = static_cast<Byte>(std::strtol(buf, nullptr, 16)*11);
-            memcpy(buf,arg,1+adj);
-            result.G = static_cast<Byte>(std::strtol(buf, nullptr, 16)*11);
-            memcpy(buf,arg,2+adj);
-            result.B = static_cast<Byte>(std::strtol(buf, nullptr, 16)*11);
+            memcpy(buf, arg, 0 + adj);
+            result.R = static_cast<Byte>(std::strtol(buf, nullptr, 16) * 0x11);
+            memcpy(buf, arg, 1 + adj);
+            result.G = static_cast<Byte>(std::strtol(buf, nullptr, 16) * 0x11);
+            memcpy(buf, arg, 2 + adj);
+            result.B = static_cast<Byte>(std::strtol(buf, nullptr, 16) * 0x11);
         }
     }
 

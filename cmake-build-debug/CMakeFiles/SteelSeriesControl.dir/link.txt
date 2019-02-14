@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/SteelSeriesControl.dir/main.cpp.o  -o SteelSeriesControl /usr/lib/x86_64-linux-gnu/libusb-1.0.so 
+/usr/bin/c++  -g   CMakeFiles/SteelSeriesControl.dir/main.cpp.o  -o SteelSeriesControl -lusb-1.0 
