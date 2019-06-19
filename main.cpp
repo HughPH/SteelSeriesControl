@@ -18,7 +18,7 @@ using namespace std;
 
 void InvokeHapticFeedback(char **argv);
 void ConfigureLED(char **args);
-void ConfigureOLD(char **args);
+void ConfigureOLED(char **args);
 void delay (unsigned int msecs);
 
 libusb_device_handle* SetupDevice(libusb_context *ctx);
@@ -32,7 +32,7 @@ struct Colour {
     Byte G;
     Byte B;
 
-    Colour(Byte R, Byte B, Byte G) {
+    Colour(Byte R, Byte G, Byte B) {
         this->R = R;
         this->G = G;
         this->B = B;
@@ -123,7 +123,7 @@ int main(int argc, char *argv[]) {
     if (command == "Image" ||
         command == "Picture" ||
         command == "OLED"){
-        ConfigureOLD(argv);
+        ConfigureOLED(argv);
     }
 
     if (command == "Animation"){
@@ -181,7 +181,7 @@ void delay (unsigned int msecs) {
     };
 }
 
-void ConfigureOLD(char **args) {
+void ConfigureOLED(char **args) {
     string i = string(args[2]);
     ifstream file;
     cout<<"Uploading " + i<<endl;
